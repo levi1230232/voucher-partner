@@ -1,0 +1,237 @@
+<app-header
+  [title]="title | translate"
+  [tooltip]="'CREATE-NEW-PROMOTION-TOOLTIP' | translate"
+></app-header>
+<div class="promotion-form-container">
+  <form [formGroup]="promotionForm" (ngSubmit)="onSubmit()">
+    <mat-card style="display: flex; flex-direction: column">
+      <h1 style="margin: 40px 20px">{{ title | translate }}</h1>
+      <hr style="margin: 0px 20px" />
+      <div
+        style="
+          background-color: #fee2e2;
+          padding: 12px;
+          margin: 5px 20px;
+          border-radius: 0.75rem;
+          border: 1px solid rgba(239, 68, 68, 0.2);
+          font-weight: 500;
+        "
+        *ngIf="promotionForm.invalid && submitted"
+      >
+        <p style="color: #991b1b">
+          {{ 'FORM-ERROR-MESSAGE' | translate }}
+        </p>
+      </div>
+      <div style="display: flex; flex-direction: row">
+        <div class="right-form">
+          <h3>{{ 'BASIC-INFORMATION' | translate }}</h3>
+          <hr />
+
+          <div *ngIf="title == 'UPDATE-PROMOTION'">
+            <label style="font-weight: 500">ID/Code</label>
+            <div class="promotion-id-container">
+              {{ promotionData?.promotion_id }}
+            </div>
+          </div>
+
+          <div class="custom-label-group">
+            <label class="form-label"
+              >{{ 'PROGRAM-NAME' | translate }} <span style="color: red">*</span></label
+            >
+            <mat-form-field appearance="outline">
+              <input
+                matInput
+                formControlName="name"
+                required
+                [placeholder]="'PROMOTION-NAME-PLACEHOLDER' | translate"
+              />
+            </mat-form-field>
+          </div>
+
+          <div class="custom-label-group">
+            <label class="form-label">{{ 'DESCRIPTION' | translate }}</label>
+            <mat-form-field appearance="outline">
+              <textarea
+                matInput
+                formControlName="description"
+                [placeholder]="'DESCRIPTION-PLACEHOLDER' | translate"
+              ></textarea>
+            </mat-form-field>
+          </div>
+
+          <div class="custom-label-group">
+            <label class="form-label"
+              >{{ 'APPLICABLE-BRAND' | translate }} <span style="color: red">*</span></label
+            >
+            <mat-form-field appearance="outline">
+              <mat-select
+                formControlName="apply_brands"
+                multiple
+                required
+                [placeholder]="'APPLY-BRANDS-PLACEHOLDER' | translate"
+              >
+                <mat-option value="FOOKBOOK">Fookbook</mat-option>
+                <mat-option value="BRAND-11K4">Steak Restaurant</mat-option>
+                <mat-option value="BRAND-59T1">iPOS Uneti Coffee & Drink</mat-option>
+                <mat-option value="BRAND-OMY7">Laville</mat-option>
+                <mat-option value="BRAND-QUTK">Bánh Canh Ghẹ</mat-option>
+                <mat-option value="SPOLHCM4">SPOLHCM4</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <h3>{{ 'OTHER-CONFIGURATION' | translate }}</h3>
+          <hr />
+
+          <div class="custom-label-group">
+            <label class="form-label">{{ 'ACCOUNTING-TYPE' | translate }}</label>
+            <mat-form-field appearance="outline">
+              <mat-select formControlName="is_coupon">
+                <mat-option [value]="1">{{ 'COUPON' | translate }}</mat-option>
+                <mat-option [value]="0">{{ 'DISCOUNT-ON-TOTAL-BILL' | translate }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="left-form">
+          <h3>{{ 'DISCOUNT-CONFIGURATION' | translate }}</h3>
+          <hr />
+
+          <div class="left-form-row">
+            <div class="custom-label-group" style="flex: 1; margin-right: 10px">
+              <label class="form-label">{{ 'DISCOUNT-TYPE' | translate }}</label>
+              <mat-form-field appearance="outline" style="width: 100%">
+                <mat-select formControlName="discount_type">
+                  <mat-option value="PERCENTAGE">{{ 'PERCENTAGE' | translate }}</mat-option>
+                  <mat-option value="AMOUNT">{{ 'FIXED-AMOUNT' | translate }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div class="custom-label-group" style="flex: 1">
+              <label class="form-label">{{ 'APPLICABLE-SCOPE' | translate }}</label>
+              <mat-form-field appearance="outline" style="width: 100%">
+                <mat-select formControlName="discount_scope">
+                  <mat-option value="ORDER">{{ 'ENTIRE-ORDER' | translate }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="custom-label-group">
+            <label class="form-label"
+              >{{ 'DISCOUNT-VALUE' | translate }} <span style="color: red">*</span></label
+            >
+            <mat-form-field appearance="outline">
+              <input
+                matInput
+                type="text"
+                placeholder="0"
+                formControlName="discount_value"
+                inputmode="numeric"
+                (keypress)="onlyNumber($event)"
+                (input)="formatNumber($event, 'discount_value')"
+                required
+              />
+              <span matSuffix>
+                {{ promotionForm.get('discount_type')?.value === 'PERCENTAGE' ? '%' : 'VND' }}
+              </span>
+            </mat-form-field>
+          </div>
+
+          <div class="left-form-row">
+            <div
+              class="custom-label-group"
+              style="flex: 1; margin-right: 10px"
+              *ngIf="promotionForm.get('discount_type')?.value !== 'AMOUNT'"
+            >
+              <label class="form-label">{{ 'MAX-DISCOUNT' | translate }}</label>
+              <mat-form-field appearance="outline" style="width: 100%">
+                <input
+                  matInput
+                  type="text"
+                  formControlName="discount_max"
+                  inputmode="numeric"
+                  (keypress)="onlyNumber($event)"
+                  (input)="formatNumber($event, 'discount_max')"
+                />
+                <span matSuffix>VND</span>
+              </mat-form-field>
+            </div>
+
+            <div class="custom-label-group" style="flex: 1">
+              <label class="form-label">{{ 'MINI-ORDER-VALUE' | translate }}</label>
+              <mat-form-field appearance="outline" style="width: 100%">
+                <input
+                  matInput
+                  type="text"
+                  formControlName="min_order_value"
+                  inputmode="numeric"
+                  (keypress)="onlyNumber($event)"
+                  (input)="formatNumber($event, 'min_order_value')"
+                />
+                <span matSuffix>VND</span>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <h3>{{ 'VALIDITY PERIOD' | translate }}</h3>
+          <hr />
+
+          <div class="left-form-row">
+            <div class="custom-label-group" style="flex: 1; margin-right: 10px">
+              <label class="form-label">{{ 'START-TIME' | translate }}</label>
+              <mat-form-field appearance="outline" style="width: 100%">
+                <input
+                  matInput
+                  [mtxDatetimepicker]="datetimePicker"
+                  formControlName="start_time"
+                  [mtxDatetimepickerFilter]="disablePastDates"
+                  placeholder="DD/MM/YYYY, HH:mm"
+                />
+                <mtx-datetimepicker-toggle
+                  [for]="datetimePicker"
+                  matSuffix
+                ></mtx-datetimepicker-toggle>
+                <mtx-datetimepicker
+                  #datetimePicker
+                  type="datetime"
+                  [multiYearSelector]="false"
+                ></mtx-datetimepicker>
+              </mat-form-field>
+            </div>
+
+            <div class="custom-label-group" style="flex: 1">
+              <label class="form-label">{{ 'END-TIME' | translate }}</label>
+              <mat-form-field appearance="outline" style="width: 100%">
+                <input
+                  matInput
+                  [mtxDatetimepicker]="endPicker"
+                  formControlName="end_time"
+                  [mtxDatetimepickerFilter]="disableEndDates"
+                  placeholder="DD/MM/YYYY, HH:mm"
+                />
+                <mtx-datetimepicker-toggle [for]="endPicker" matSuffix></mtx-datetimepicker-toggle>
+                <mtx-datetimepicker #endPicker type="datetime"></mtx-datetimepicker>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div><hr style="margin: 0px 20px" /></div>
+
+      <div class="action-form">
+        <a routerLink="/promotions" class="btn-link">
+          <button class="btn-outline" type="button">
+            {{ 'CANCEL' | translate }}
+          </button>
+        </a>
+        <button class="btn-secondary" type="submit">
+          {{ title | translate }}
+        </button>
+      </div>
+    </mat-card>
+  </form>
+</div>

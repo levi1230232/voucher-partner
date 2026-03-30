@@ -1,0 +1,66 @@
+<div class="login-container">
+  <div class="partner-branding">
+    <h1>VOUCHER PARTNER</h1>
+    <p>Powered by <span>IPOS.vn</span></p>
+  </div>
+
+  <mat-card class="login-card">
+    <h2 class="login-title">Login</h2>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Username</mat-label>
+      <input
+        matInput
+        [ngModel]="username()"
+        (ngModelChange)="username.set($event)"
+        (input)="errorMessage.set('')"
+        placeholder="Enter your username"
+        (keyup.enter)="login()"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        [type]="hide ? 'text' : 'password'"
+        [ngModel]="password()"
+        (ngModelChange)="password.set($event)"
+        (input)="errorMessage.set('')"
+        placeholder="Enter your password"
+        #passwordInput
+        (keyup.enter)="login()"
+      /><button
+        mat-icon-button
+        matSuffix
+        (click)="toggleVisibility()"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+      >
+        <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <div *ngIf="errorMessage()" class="error-message">
+      <mat-icon style="vertical-align: middle; font-size: 18px; height: 18px; width: 18px">
+        error_outline
+      </mat-icon>
+      <span style="margin-left: 8px">{{ errorMessage() }}</span>
+    </div>
+
+    <button
+      mat-raised-button
+      color="primary"
+      class="full-width login-button"
+      (click)="login()"
+      [disabled]="isLoading()"
+    >
+      <span *ngIf="!isLoading()">Login</span>
+
+      <div *ngIf="isLoading()" class="loading-wrapper">
+        <mat-spinner diameter="20" mode="indeterminate" class="inline-spinner"></mat-spinner>
+        <span>Logging in...</span>
+      </div>
+    </button>
+  </mat-card>
+</div>

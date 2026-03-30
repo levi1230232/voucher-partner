@@ -1,0 +1,53 @@
+.dialog-title {
+  font-size: 22px;
+  font-weight: 600;
+  padding: 0 20px;
+  margin-bottom: 20px;
+}
+
+.voucher-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0 20px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.datetime-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.error-box {
+  background-color: #fee2e2;
+  padding: 12px;
+  margin: 0px 20px 30px 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  font-weight: 500;
+}
+
+.error-box p {
+  color: #991b1b;
+  margin: 0;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 16px 20px 10px 20px;
+}
+
+.cancel-btn {
+  min-width: 100px;
+}
+
+.confirm-btn {
+  min-width: 140px;
+  font-weight: 500;
+}

@@ -1,0 +1,71 @@
+<h2 mat-dialog-title class="dialog-title">Add Voucher Codes</h2>
+
+<div class="error-box" *ngIf="voucherForm.invalid && submitted">
+  <p>{{ 'FORM-ERROR-MESSAGE' | translate }}</p>
+</div>
+
+<form [formGroup]="voucherForm" class="voucher-form">
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Promotion ID</mat-label>
+    <input matInput formControlName="promotion_id" readonly />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>{{ 'EMAIL' | translate }}</mat-label>
+    <input matInput formControlName="email" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>{{ 'NUMBER-OF-VOUCHERS' | translate }}</mat-label>
+    <input
+      matInput
+      inputmode="numeric"
+      type="text"
+      formControlName="number_voucher"
+      (keypress)="onlyNumber($event)"
+      (input)="formatNumber($event, 'number_voucher')"
+    />
+  </mat-form-field>
+
+  <div class="datetime-row">
+    <mat-form-field appearance="outline">
+      <mat-label>{{ 'START-TIME' | translate }}</mat-label>
+      <input
+        matInput
+        [mtxDatetimepicker]="datetimePicker"
+        formControlName="start_time"
+        [mtxDatetimepickerFilter]="disablePastDates"
+      />
+
+      <mtx-datetimepicker-toggle [for]="datetimePicker" matSuffix> </mtx-datetimepicker-toggle>
+
+      <mtx-datetimepicker #datetimePicker type="datetime" [multiYearSelector]="false">
+      </mtx-datetimepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>{{ 'END-TIME' | translate }}</mat-label>
+
+      <input
+        matInput
+        [mtxDatetimepicker]="endPicker"
+        formControlName="end_time"
+        [mtxDatetimepickerFilter]="disableEndDates"
+      />
+
+      <mtx-datetimepicker-toggle [for]="endPicker" matSuffix> </mtx-datetimepicker-toggle>
+
+      <mtx-datetimepicker #endPicker type="datetime"> </mtx-datetimepicker>
+    </mat-form-field>
+  </div>
+</form>
+
+<mat-dialog-actions class="dialog-actions">
+  <button mat-button class="cancel-btn" (click)="close()">
+    {{ 'CANCEL' | translate }}
+  </button>
+
+  <button mat-raised-button color="primary" class="confirm-btn" (click)="submit()">
+    {{ 'CONFIRM-CREATE' | translate }}
+  </button>
+</mat-dialog-actions>

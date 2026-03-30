@@ -1,0 +1,157 @@
+<app-header [title]="'MONTHLY-USAGE' | translate" [tooltip]="'USAGE-DASHBOARD-TOOLTIP' | translate">
+</app-header>
+<div class="usage-dashboard">
+  <mat-card>
+    <div class="stats-date-filters">
+      <button
+        class="filter-btn"
+        [class.active]="selectedFilter() == 'today'"
+        (click)="filterLastDays(0, 'today')"
+      >
+        {{ 'TODAY' | translate }}
+      </button>
+      <button
+        class="filter-btn"
+        [class.active]="selectedFilter() == 'last7'"
+        (click)="filterLastDays(6, 'last7')"
+      >
+        {{
+          currentLang == 'en'
+            ? ('LAST' | translate) + ' 7 ' + ('DAYS' | translate)
+            : '7 ' + ('DAYS' | translate) + ' ' + ('LAST' | translate)
+        }}
+      </button>
+      <button
+        class="filter-btn"
+        [class.active]="selectedFilter() == 'last15'"
+        (click)="filterLastDays(14, 'last15')"
+      >
+        {{
+          currentLang == 'en'
+            ? ('LAST' | translate) + ' 15 ' + ('DAYS' | translate)
+            : '15 ' + ('DAYS' | translate) + ' ' + ('LAST' | translate)
+        }}
+      </button>
+      <button
+        class="filter-btn"
+        [class.active]="selectedFilter() == 'last30'"
+        (click)="filterLastDays(29, 'last30')"
+      >
+        {{
+          currentLang == 'en'
+            ? ('LAST' | translate) + ' 30 ' + ('DAYS' | translate)
+            : '30 ' + ('DAYS' | translate) + ' ' + ('LAST' | translate)
+        }}
+      </button>
+      <div class="date-input">
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+        <mat-date-range-input [rangePicker]="picker" (click)="picker.open()">
+          <input
+            matStartDate
+            placeholder="Start date"
+            [value]="dateRange().start"
+            (dateChange)="onStartDateChange($event)"
+          />
+
+          <input
+            matEndDate
+            placeholder="End date"
+            [value]="dateRange().end"
+            (dateChange)="onEndDateChange($event)"
+          />
+        </mat-date-range-input>
+      </div>
+    </div>
+  </mat-card>
+  <div class="stats-grid">
+    <mat-card class="stats-card">
+      <div class="stats-label">{{ 'TOTAL-ISSUED' | translate }}</div>
+      <div class="stats-value">{{ stats().total_issued }}</div>
+    </mat-card>
+    <mat-card class="stats-card"
+      ><div class="stats-label">{{ 'DAILY-AVERAGE' | translate }}</div>
+      <div class="stats-value">{{ stats().daily_average }}</div></mat-card
+    >
+    <mat-card class="stats-card"
+      ><div class="stats-label">
+        {{ 'PEAK-DAY' | translate }}
+        {{
+          stats().peak_day
+            ? stats().peak_day.toString().slice(6, 8) +
+              '/' +
+              stats().peak_day.toString().slice(4, 6) +
+              '/' +
+              stats().peak_day.toString().slice(0, 4)
+            : ''
+        }}
+      </div>
+      <div class="stats-value">{{ stats().peak_value }}</div>
+    </mat-card>
+    <mat-card class="stats-card"
+      ><div class="stats-label">
+        {{ 'LOW-DAY' | translate }}
+        {{
+          stats().low_date
+            ? stats().low_date.toString().slice(6, 8) +
+              '/' +
+              stats().low_date.toString().slice(4, 6) +
+              '/' +
+              stats().low_date.toString().slice(0, 4)
+            : ''
+        }}
+      </div>
+      <div class="stats-value">
+        {{ stats().low_value }}
+      </div></mat-card
+    >
+  </div>
+  <div class="dashboard-content">
+    <mat-card style="padding: 20px; flex: 1">
+      <apx-chart
+        #chart
+        [series]="chartOptions.series"
+        [chart]="chartOptions.chart"
+        [xaxis]="chartOptions.xaxis"
+        [stroke]="chartOptions.stroke"
+        [tooltip]="chartOptions.tooltip"
+        [dataLabels]="chartOptions.dataLabels"
+        [fill]="chartOptions.fill"
+        [markers]="chartOptions.markers"
+        [theme]="chartOptions.theme"
+        [yaxis]="chartOptions.yaxis"
+        [title]="{ text: ('VOUCHER-ISSUANCE-CHART' | translate) }"
+      ></apx-chart>
+    </mat-card>
+    <mat-card class="table-card">
+      <div class="table-title">
+        <h3>{{ 'DETAIL-DATA-TABLE' | translate }}</h3>
+        <span class="badge">{{ stats().len_data }}</span>
+      </div>
+      <table
+        mat-table
+        [dataSource]="dataSource"
+        class="mat-elevation-z8"
+        style="margin-bottom: auto"
+      >
+        <ng-container matColumnDef="Date">
+          <th mat-header-cell *matHeaderCellDef>{{ 'DATE' | translate }}</th>
+          <td mat-cell *matCellDef="let element">{{ formatDate(element.date_hash) }}</td>
+        </ng-container>
+        <ng-container matColumnDef="Issued Quantity">
+          <th mat-header-cell *matHeaderCellDef>{{ 'ISSUED-QUANTITY' | translate }}</th>
+          <td mat-cell *matCellDef="let element">{{ element.voucher_published }}</td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" [attr.colspan]="displayedColumns.length" style="text-align: center">
+            {{ 'NO_DATA' | translate }}
+          </td>
+        </tr>
+      </table>
+      <mat-paginator [length]="total()" [pageSize]="6" [hidePageSize]="true" showFirstLastButtons>
+      </mat-paginator>
+    </mat-card>
+  </div>
+</div>

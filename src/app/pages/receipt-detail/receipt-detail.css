@@ -1,0 +1,106 @@
+.receipt-detail-container {
+  padding: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #00000012;
+  min-height: calc(100vh);
+  position: relative;
+}
+
+mat-card {
+  background-color: white;
+  width: 800px;
+  padding: 30px 40px;
+  border-radius: 8px;
+}
+
+.logo-ipos {
+  width: 150px;
+  margin-bottom: 20px;
+}
+
+.invoice-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.text-left {
+  text-align: left;
+}
+.bill-title {
+  display: inline-block;
+  min-width: 150px;
+  color: #797979;
+  font-size: 14px;
+}
+.ipos-color-active {
+  color: #10b981;
+}
+.fw-600 {
+  font-weight: 600;
+}
+.mb-1 {
+  margin-bottom: 4px;
+}
+.mt-3 {
+  margin-top: 16px;
+}
+.text-right {
+  text-align: right;
+}
+
+.row-end {
+  display: flex;
+  justify-content: end;
+}
+.float-right {
+  margin-left: auto;
+  margin-right: 0;
+}
+.w-100 {
+  width: 100%;
+}
+.td-amount {
+  min-width: 130px;
+  text-align: right;
+}
+.bill-amount {
+  font-weight: 600;
+  color: #363636;
+}
+.paid-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+  text-align: center;
+}
+.download-btn {
+  position: absolute;
+  background: transparent;
+  transform: translate(-50%, -50%);
+  gap: 8px;
+  top: 85%;
+  left: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background-color: #6c757d;
+  border-color: #6c757d;
+  font-weight: 500;
+  padding: 10px;
+  border-radius: 6px;
+  opacity: 0.6;
+}
+.download-btn:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+.text-success {
+  color: #10b981;
+}

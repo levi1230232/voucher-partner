@@ -1,0 +1,67 @@
+.receipt-container {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: #00000012;
+  position: relative;
+}
+mat-card {
+  background-color: white;
+}
+.filter-receipt {
+  padding: 20px 10px;
+}
+.badge {
+  background-color: #e0e7ff;
+  color: #0560a6;
+  padding: 2px 10px;
+  border-radius: 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+.table-receipt {
+  padding: 24px;
+  border: 1px solid #e2e8f0cc;
+}
+.status.paid {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+.status.unpaid {
+  background-color: #fbe9e7;
+  color: #d84315;
+}
+.status {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+.promo-id {
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: #0560a6;
+  background: #e0e7ff;
+  padding: 4px 8px;
+  border-radius: 0.5rem;
+  display: inline-block;
+  text-decoration: none;
+}
+.promo-id:hover {
+  background: #0560a6;
+  color: #fff;
+}
+.loading-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.7);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 10;
+}

@@ -1,0 +1,57 @@
+.layout-container {
+  height: 100vh;
+  /* display: flex; */
+  gap: 40px;
+}
+mat-sidenav {
+  background: white;
+}
+
+.youtube-sidebar {
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 80px;
+}
+.youtube-sidebar:hover {
+  width: 260px;
+  overflow-x: hidden;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-right: 1px solid #e5e5e5;
+}
+.youtube-sidebar:hover .sidebar-title {
+  opacity: 1;
+  width: auto;
+}
+
+.page-content {
+  padding: 30px;
+}
+.no-transition {
+  transition: none;
+}
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 16px;
+  white-space: nowrap;
+  /* border-bottom: 0.5px solid gray; */
+}
+
+.sidebar-logo {
+  width: 48px;
+  height: 48px;
+  margin: 8px;
+  object-fit: cover;
+}
+
+.sidebar-title {
+  font-size: 18px;
+  font-weight: 600;
+  transition: opacity 0.2s;
+  color: #f89523;
+}
+.youtube-sidebar .sidebar-title {
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+}

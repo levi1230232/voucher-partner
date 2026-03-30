@@ -1,0 +1,9 @@
+<div *ngIf="loading()">Đang tải dữ liệu...</div>
+
+<app-promotion-form
+  *ngIf="!loading() && promotionData()"
+  [title]="title"
+  [promotionData]="promotionData()"
+  (submitForm)="updatePromotion($event)"
+>
+</app-promotion-form>

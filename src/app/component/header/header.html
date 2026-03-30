@@ -1,0 +1,17 @@
+<mat-toolbar class="header-toolbar">
+  <h2 class="header-title">{{ title.toLocaleUpperCase() }}</h2>
+  <button
+    style="
+      outline: none;
+      background-color: transparent;
+      border: none;
+      display: flex;
+      align-items: center;
+    "
+    (click)="tip.toggle()"
+    #tip="matTooltip"
+    [matTooltip]="tooltip"
+  >
+    <mat-icon>help_outline</mat-icon>
+  </button>
+</mat-toolbar>

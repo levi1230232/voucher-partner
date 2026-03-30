@@ -1,0 +1,204 @@
+<mat-card>
+  <div class="header-stats">
+    <div class="title">
+      {{ 'STATISTICS' | translate }}
+    </div>
+    <div class="actions">
+      <div class="stats-date-filters">
+        <button
+          class="filter-btn"
+          [class.active]="selectedFilter() === 'today'"
+          (click)="filterLastDays(0, 'today')"
+        >
+          {{ 'TODAY' | translate }}
+        </button>
+
+        <button
+          class="filter-btn"
+          [class.active]="selectedFilter() === 'last7'"
+          (click)="filterLastDays(6, 'last7')"
+        >
+          {{
+            currentLang == 'en'
+              ? ('LAST' | translate) + ' 7 ' + ('DAYS' | translate)
+              : '7 ' + ('DAYS' | translate) + ' ' + ('LAST' | translate)
+          }}
+        </button>
+
+        <button
+          class="filter-btn"
+          [class.active]="selectedFilter() === 'last15'"
+          (click)="filterLastDays(14, 'last15')"
+        >
+          {{
+            currentLang == 'en'
+              ? ('LAST' | translate) + ' 15 ' + ('DAYS' | translate)
+              : '15 ' + ('DAYS' | translate) + ' ' + ('LAST' | translate)
+          }}
+        </button>
+
+        <button
+          class="filter-btn"
+          [class.active]="selectedFilter() === 'last30'"
+          (click)="filterLastDays(29, 'last30')"
+        >
+          {{
+            currentLang == 'en'
+              ? ('LAST' | translate) + ' 30 ' + ('DAYS' | translate)
+              : '30 ' + ('DAYS' | translate) + ' ' + ('LAST' | translate)
+          }}
+        </button>
+        <div class="date-input">
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+          <mat-date-range-input [rangePicker]="picker" (click)="picker.open()">
+            <input
+              matStartDate
+              placeholder="Start date"
+              [value]="dateRange().start"
+              (dateChange)="onStartDateChange($event)"
+            />
+
+            <input
+              matEndDate
+              placeholder="End date"
+              [value]="dateRange().end"
+              (dateChange)="onEndDateChange($event)"
+            />
+          </mat-date-range-input>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="body-stats">
+    <div class="stats-grid">
+      <div class="stat-box box-blue">
+        <div class="box-title">{{ 'VOUCHER-ISSUED' | translate }}</div>
+
+        <div class="box-content">
+          <div class="stat-icon">
+            <mat-icon color="primary">confirmation_number</mat-icon>
+          </div>
+
+          <div class="stat-number">{{ stats().published_count }}</div>
+        </div>
+      </div>
+
+      <div class="stat-box box-green">
+        <div class="box-title">{{ 'USAGE-RATE' | translate }}</div>
+
+        <div class="box-content usage-box">
+          <div class="usage-icon">
+            <mat-icon color="primary">verified</mat-icon>
+          </div>
+
+          <div class="customer-chart">
+            <div class="usage-circle">
+              <svg class="progress-ring" width="120" height="120">
+                <circle class="progress-ring-bg" cx="60" cy="60" r="45" />
+
+                <circle
+                  class="progress-ring-fill"
+                  cx="60"
+                  cy="60"
+                  r="45"
+                  [style.strokeDashoffset]="calcOffset(stats().percent)"
+                />
+              </svg>
+
+              <div class="circle-text">
+                <h2>{{ stats().used_count }}</h2>
+                <span>{{ stats().percent ? stats().percent : '0' }}%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stat-box box-purple">
+        <div class="box-title">{{ 'CUSTOMERS' | translate }}</div>
+
+        <div class="box-content customer-box">
+          <div class="customer-left">
+            <div class="customer-item">
+              <span class="dot new"></span>
+              {{ 'NEW' | translate }}
+              <span class="count">{{
+                stats().new_customer_count > 0 ? stats().new_customer_count : '0'
+              }}</span>
+            </div>
+
+            <div class="customer-item">
+              <span class="dot old"></span>
+              {{ 'OLD' | translate }}
+              <span class="count">{{
+                stats().repeat_customer_count > 0 ? stats().repeat_customer_count : '0'
+              }}</span>
+            </div>
+          </div>
+
+          <div class="customer-total">
+            {{
+              stats().new_customer_count > 0 || stats().repeat_customer_count > 0
+                ? stats().repeat_customer_count + stats().new_customer_count
+                : '0'
+            }}
+          </div>
+        </div>
+
+        <div class="customer-progress">
+          <div
+            class="progress-bar"
+            [style.width.%]="
+              stats().repeat_customer_count + stats().new_customer_count > 0
+                ? (stats().repeat_customer_count /
+                    (stats().repeat_customer_count + stats().new_customer_count)) *
+                  100
+                : 0
+            "
+          ></div>
+        </div>
+
+        <div class="progress-text">
+          {{
+            stats().repeat_customer_count + stats().new_customer_count > 0
+              ? (
+                  (stats().repeat_customer_count /
+                    (stats().repeat_customer_count + stats().new_customer_count)) *
+                  100
+                ).toFixed(1)
+              : 0
+          }}%
+        </div>
+      </div>
+
+      <div class="stat-box box-orange">
+        <div class="box-title">{{ 'REVENUE' | translate }}</div>
+
+        <div class="box-content flex-col">
+          <div class="fin-row">
+            <span>{{ 'TOTAL-REVENUE' | translate }}</span
+            ><span class="fw-bold">{{
+              stats().total_revenue > 0 ? stats().total_revenue + ' ₫' : '-'
+            }}</span>
+          </div>
+          <div class="fin-row">
+            <span>{{ 'TOTAL-DISCOUNT' | translate }}</span
+            ><span class="fw-bold">{{
+              stats().total_discount > 0 ? stats().total_discount + ' ₫' : '-'
+            }}</span>
+          </div>
+          <hr />
+          <div class="fin-row fw-bold">
+            <span>{{ 'NET-REVENUE' | translate }}</span
+            ><span>{{
+              stats().total_revenue > 0 && stats().total_discount > 0
+                ? stats().total_revenue - stats().total_discount + ' ₫'
+                : '-'
+            }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-card>

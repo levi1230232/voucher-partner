@@ -1,0 +1,248 @@
+mat-card {
+  background-color: white;
+  padding: 10px;
+}
+.header-stats {
+  margin: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #363636;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+.stats-date-filters {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.filter-btn {
+  background: #fff;
+  border: 1px solid #cbd5e1;
+  color: #64748b;
+  padding: 10px 16px;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.active {
+  background: #6b7280;
+  border-color: #6b7280;
+  color: #fff;
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  padding: 20px;
+}
+.stat-box {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px #0000000d;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 20px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(#e2e8f0cc, #e2e8f0);
+  border-top: 4px solid;
+  transition: all 0.2s ease;
+}
+.stat-box:hover {
+  transform: translateY(-3px);
+  transform: scale(1.05);
+}
+.box-blue {
+  border-top-color: #3b82f6;
+  background: linear-gradient(180deg, #eff6ff, #fff 40%);
+}
+.stat-icon,
+.usage-icon {
+  width: 40%;
+}
+.stat-icon mat-icon {
+  color: #3b82f6;
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+}
+.usage-icon mat-icon {
+  color: #10b981;
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+}
+.box-green {
+  border-top-color: #10b981;
+  background: linear-gradient(180deg, #d1fae5, #fff 40%);
+}
+.box-purple {
+  border-top-color: #a855f7;
+  background: linear-gradient(180deg, #f3e8ff, #fff 40%);
+}
+.box-orange {
+  border-top-color: #f59e0b;
+  background: linear-gradient(180deg, #fff7ed, #fff 40%);
+}
+.box-title {
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 16px;
+}
+.box-content {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  gap: 12px;
+}
+.stat-number {
+  font-size: 32px;
+  font-weight: 700;
+  margin-left: auto;
+}
+
+.usage-box {
+  justify-content: space-between;
+}
+
+.usage-circle {
+  position: relative;
+  width: 120px;
+  height: 120px;
+}
+
+.progress-ring {
+  transform: rotate(-90deg);
+}
+
+.progress-ring-bg {
+  fill: none;
+  stroke: #e5e7eb;
+  stroke-width: 10;
+}
+
+.progress-ring-fill {
+  fill: none;
+  stroke: #10b981;
+  stroke-width: 10;
+  stroke-linecap: round;
+
+  stroke-dasharray: 283;
+  stroke-dashoffset: 283;
+  transition: stroke-dashoffset 0.6s ease;
+}
+
+.circle-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.circle-text span {
+  color: #64748b;
+  font-size: 14px;
+}
+.customer-box {
+  justify-content: space-between;
+}
+
+.customer-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.dot.new {
+  background: #fbbf24;
+}
+
+.dot.old {
+  background: #8b5cf6;
+}
+
+.customer-total {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.progress-bar {
+  margin-top: 10px;
+  background: #e9d5ff;
+  border-radius: 10px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 12px;
+}
+.fin-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.875rem;
+  width: 100%;
+}
+.flex-col {
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+}
+.fw-bold {
+  font-weight: 700;
+  color: #0f172a;
+}
+.customer-progress {
+  width: 100%;
+  height: 8px;
+  background: #8b5cf6;
+
+  border-radius: 6px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.progress-bar {
+  height: 100%;
+  background: #4caf50;
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  font-size: 12px;
+  margin-top: 4px;
+  text-align: right;
+  color: #666;
+}
+.date-input {
+  display: flex;
+  align-items: center;
+  border: 1px solid #e2e8f0;
+
+  justify-content: space-between;
+
+  padding-right: 28px;
+  border-radius: 4px;
+}

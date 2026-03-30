@@ -1,0 +1,57 @@
+<mat-nav-list class="sidebar-list">
+  <div class="menu-top">
+    <a mat-list-item routerLink="/promotions" routerLinkActive="active">
+      <mat-icon matListItemIcon>list_alt</mat-icon>
+
+      <span matListItemTitle class="menu-text">
+        {{ 'PROMOTIONS-LIST' | translate }}
+      </span>
+    </a>
+
+    <a mat-list-item routerLinkActive="active" routerLink="/monthly-usage">
+      <mat-icon matListItemIcon>leaderboard</mat-icon>
+
+      <div class="menu-item-content">
+        <span class="menu-text">
+          {{ 'USAGE-DASHBOARD' | translate }}
+        </span>
+
+        <!-- <span class="coming-soon-tag">Coming Soon</span> -->
+      </div>
+    </a>
+    <a mat-list-item routerLinkActive="active" routerLink="/receipts">
+      <mat-icon matListItemIcon>receipt</mat-icon>
+
+      <div class="menu-item-content">
+        <span class="menu-text">
+          {{ 'RECEIPTS' | translate }}
+        </span>
+
+        <!-- <span class="coming-soon-tag">Coming Soon</span> -->
+      </div>
+    </a>
+  </div>
+
+  <div class="menu-bottom">
+    <button mat-list-item class="lang-item">
+      <mat-icon matListItemIcon>translate</mat-icon>
+
+      <mat-button-toggle-group
+        class="lang-toggle"
+        [value]="currentLang()"
+        (change)="changeLanguage($event.value)"
+      >
+        <mat-button-toggle value="en">EN</mat-button-toggle>
+        <mat-button-toggle value="vi">VI</mat-button-toggle>
+      </mat-button-toggle-group>
+    </button>
+
+    <button mat-list-item (click)="logout()">
+      <mat-icon style="color: #ef4444" matListItemIcon>logout</mat-icon>
+
+      <span class="menu-text" style="color: #ef4444" [class.hide-text]="collapsed">
+        {{ 'LOGOUT' | translate }}
+      </span>
+    </button>
+  </div>
+</mat-nav-list>

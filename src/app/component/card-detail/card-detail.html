@@ -1,0 +1,53 @@
+<button
+  mat-button
+  [matMenuTriggerFor]="detailMenu"
+  class="card-button"
+  #menuTrigger="matMenuTrigger"
+  (menuOpened)="menuOpen = true"
+  (menuClosed)="menuOpen = false"
+>
+  {{ 'DETAILS' | translate }}
+  <mat-icon [class.rotate]="menuOpen">arrow_drop_down</mat-icon>
+</button>
+
+<mat-menu #detailMenu="matMenu" class="usage-menu">
+  <div class="usage-card">
+    <div class="usage-header">{{ 'USAGE-INFORMATION' | translate }}</div>
+
+    <div class="usage-body">
+      <div class="usage-row">
+        <mat-icon>credit_card</mat-icon>
+        <div>
+          <div class="label">{{ 'ORDER-ID' | translate }}</div>
+          <div class="value">{{ voucherDetail.sale_id }}</div>
+        </div>
+      </div>
+
+      <div class="usage-row">
+        <mat-icon>location_on</mat-icon>
+        <div>
+          <div class="label">{{ 'USED-POS' | translate }}</div>
+          <div class="value">{{ voucherDetail.used_pos }}</div>
+        </div>
+      </div>
+
+      <hr />
+
+      <div class="usage-row">
+        <mat-icon>credit_card</mat-icon>
+        <div>
+          <div class="label">{{ 'BIILL-AMOUNT' | translate }}</div>
+          <div class="value">{{ voucherDetail.bill_amount }} ₫</div>
+        </div>
+      </div>
+
+      <div class="usage-row">
+        <mat-icon>percent</mat-icon>
+        <div>
+          <div class="label">{{ 'DISCOUNT' | translate }}</div>
+          <div class="value">{{ voucherDetail.discount_amount }} ₫</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-menu>

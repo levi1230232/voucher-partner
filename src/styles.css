@@ -1,1 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'ngx-toastr/toastr';
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.toast-container {
+  z-index: 999999;
+}
+body {
+  background: transparent;
+}
+hr {
+  opacity: 0.4;
+}
+@media print {
+  body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .paid-image {
+    opacity: 0.3;
+  }
+  #print-section {
+    width: 800px;
+    margin-top: 40px;
+  }
+}
+@media print {
+  button {
+    display: none !important;
+  }
+}

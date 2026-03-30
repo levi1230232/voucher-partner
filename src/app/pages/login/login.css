@@ -1,0 +1,76 @@
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  background: linear-gradient(90deg, #e9e8f1 0%, #eff4f5 100%);
+}
+.partner-branding {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.partner-branding h1 {
+  color: #f89523;
+
+  margin-bottom: 10px;
+}
+.partner-branding p {
+  font-weight: 300;
+  color: gray;
+}
+.partner-branding span {
+  font-weight: 700;
+}
+
+.login-card {
+  width: 450px;
+  padding: 30px;
+  box-shadow:
+    0 10px 25px -5px #0000000d,
+    0 8px 10px -6px #00000003;
+  background-color: #fff;
+}
+
+.login-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.login-button {
+  height: 45px;
+}
+.error-message {
+  color: #f44336;
+  background-color: #ffebee;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  border: 1px solid #ffcdd2;
+
+  /* animation: fadeIn 0.3s ease-in; */
+}
+/* 
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+} */
+
+.loading-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.inline-spinner ::ng-deep circle {
+  stroke: white !important;
+}

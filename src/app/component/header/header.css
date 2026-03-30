@@ -1,0 +1,29 @@
+.header-toolbar {
+  display: flex;
+  align-items: center;
+  box-shadow: 1px 1px #d1d0d0;
+  background-color: #ffffff;
+  padding: 0px 20px;
+  height: 64px;
+  position: sticky;
+  gap: 10px;
+  top: 0;
+  z-index: 1000;
+}
+.spacer {
+  flex: 1;
+}
+mat-icon {
+  margin-top: 5px;
+  opacity: 0.5;
+  font-size: 16px;
+}
+button:hover {
+  color: #f89523;
+}
+.header-title {
+  /* color: rgb(235, 130, 99); */
+  font-size: 20px;
+  font-weight: 600;
+  margin-left: 12px;
+}

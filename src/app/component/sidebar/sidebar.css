@@ -1,0 +1,90 @@
+mat-nav-list {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 72px);
+}
+.menu-bottom {
+  margin-top: auto;
+}
+
+mat-nav-list a.mat-mdc-list-item {
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  height: 48px;
+  margin-bottom: 4px;
+  padding: 0 8px;
+  transition: 0.2s;
+}
+
+mat-nav-list span.menu-text {
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.coming-soon-tag {
+  margin-left: auto;
+  font-size: 11px;
+  background: #ff9800;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+mat-nav-list a.mat-mdc-list-item:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+mat-nav-list a.active {
+  background: rgba(0, 0, 0, 0.08);
+  font-weight: 500;
+}
+
+.disabled-link {
+  pointer-events: none;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+button {
+  outline: none;
+  border: none;
+}
+.language-switch {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+}
+
+.language-switch button {
+  min-width: 40px;
+  font-size: 13px;
+}
+
+.active-lang {
+  font-weight: 600;
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: 6px;
+}
+.lang-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.lang-item mat-icon {
+  margin-right: 12px;
+}
+
+.lang-toggle {
+  margin-left: auto;
+}
+
+.lang-toggle .mat-button-toggle {
+  font-size: 12px;
+  padding: 0 8px;
+}
