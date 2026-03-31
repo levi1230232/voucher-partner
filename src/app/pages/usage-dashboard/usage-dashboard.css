@@ -84,6 +84,7 @@ mat-card {
   width: 30%;
   gap: 20px;
   justify-content: space-between;
+  min-height: 540px;
 }
 
 .date-input {

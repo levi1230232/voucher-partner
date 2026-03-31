@@ -121,5 +121,6 @@
   "LACK": "LACK",
   "PRINT-OR-DOWNLOAD-BILL": " Print or download bill",
   "NO_DATA": "No matching data found",
-  "INVOICE": "Invoice"
+  "INVOICE": "Invoice",
+  "QUANTITY": "Quantity"
 }

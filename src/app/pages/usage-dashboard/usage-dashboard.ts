@@ -80,7 +80,7 @@ export class UsageDashboard implements OnInit {
     this.chartOptions = {
       series: [
         {
-          name: 'Voucher Published',
+          name: this.translate.instant('QUANTITY'),
           data: [],
         },
       ],
@@ -154,7 +154,7 @@ export class UsageDashboard implements OnInit {
       this.chart.updateOptions({
         series: [
           {
-            name: 'Voucher Published',
+            name: this.translate.instant('QUANTITY'),
             data: chartData,
           },
         ],
