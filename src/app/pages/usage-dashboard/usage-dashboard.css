@@ -7,6 +7,14 @@
 }
 mat-card {
   background-color: white;
+  box-shadow: 0 2px 4px #0f172a0a;
+}
+.mat-mdc-row:nth-child(even) {
+  background-color: #f8fafc;
+}
+
+.mat-mdc-row:nth-child(odd) {
+  background-color: white;
 }
 .filter-btn {
   background: #fff;
@@ -81,7 +89,7 @@ mat-card {
   border: 1px solid #e2e8f0cc;
   display: flex;
   flex-direction: column;
-  width: 30%;
+  width: 31%;
   gap: 20px;
   justify-content: space-between;
   min-height: 540px;
