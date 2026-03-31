@@ -21,6 +21,7 @@ import { PromotionService } from '../../services/promotion.service';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { max, min } from 'rxjs';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -91,7 +92,7 @@ export class UsageDashboard implements OnInit {
         zoom: { enabled: false },
       },
       xaxis: {
-        type: 'datetime',
+        type: 'category',
       },
       stroke: {
         curve: 'smooth',
@@ -137,19 +138,13 @@ export class UsageDashboard implements OnInit {
 
       if (!stats?.list_rp_daily_billing || !this.chart) return;
 
-      const chartData = stats.list_rp_daily_billing.map((item: any) => {
-        const year = Number(item.date_hash.slice(0, 4));
-        const month = Number(item.date_hash.slice(4, 6)) - 1;
-        const day = Number(item.date_hash.slice(6, 8));
+      const chartData = stats.list_rp_daily_billing.map((item: any) => ({
+        x: this.formatDate(item.date_hash).slice(0, 5),
+        y: Number(item.voucher_published) || 0,
+      }));
 
-        return {
-          x: new Date(year, month, day).getTime(),
-          y: Number(item.voucher_published) || 0,
-        };
-      });
-
-      const minX = chartData[0]?.x;
-      const maxX = chartData[chartData.length - 1]?.x;
+      // const minX = chartData[0]?.x;
+      // const maxX = chartData[chartData.length - 1]?.x;
 
       this.chart.updateOptions({
         series: [
@@ -159,9 +154,14 @@ export class UsageDashboard implements OnInit {
           },
         ],
         xaxis: {
-          type: 'datetime',
-          min: minX,
-          max: maxX,
+          type: 'category',
+          // min: minX,
+          // max: maxX,
+          // tickAmount: chartData.length,
+        },
+        yaxis: {
+          // max: this.stats().peak_value,
+          tickAmount: 7,
         },
       });
     });
