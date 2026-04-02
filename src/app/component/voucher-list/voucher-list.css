@@ -4,7 +4,7 @@
   gap: 20px;
   position: relative;
   padding: 32px;
-  background-color: #00000012;
+  background-color: transparent;
 }
 mat-card {
   padding: 16px;
@@ -103,4 +103,15 @@ mat-card {
   justify-content: center;
 
   z-index: 10;
+}
+.mat-mdc-row:nth-child(even) {
+  background-color: #f8fafc;
+}
+
+.mat-mdc-row:nth-child(odd) {
+  background-color: white;
+}
+table {
+  table-layout: fixed;
+  width: 100%;
 }

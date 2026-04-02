@@ -39,8 +39,6 @@ import { VouchersStats } from '../vouchers-stats/vouchers-stats';
   styleUrl: './voucher-list.css',
 })
 export class VoucherList implements OnInit {
-  supportedLangs: string[] = ['en', 'vi'];
-  currentLang: string = 'en';
   total = signal<number>(0);
   promotionId: string = '';
   displayedColumns: string[] = [
@@ -107,11 +105,6 @@ export class VoucherList implements OnInit {
     });
   }
   ngOnInit(): void {
-    const savedLang = localStorage.getItem('lang') || 'en';
-    this.currentLang = savedLang;
-
-    this.translate.setFallbackLang('en');
-    this.translate.use(savedLang);
     const savedFilter = localStorage.getItem('voucherFilter');
     if (savedFilter) {
       const parsed = JSON.parse(savedFilter);

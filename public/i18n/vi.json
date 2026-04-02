@@ -121,5 +121,17 @@
   "PRINT-OR-DOWNLOAD-BILL": "In hoặc tải hóa đơn",
   "NO_DATA": "Không tìm thấy dữ liệu phù hợp",
   "INVOICE": "Hóa đơn",
-  "QUANTITY": "Số lượng"
+  "QUANTITY": "Số lượng",
+
+  "SELECT-DATE": "Chọn Ngày",
+  "EMAIL": "Email nhận danh sách",
+  "EMAIL-PLACEHOLDER": "Nhập email",
+  "NUMBER-VOUCHER": "Nhập số lượng voucher",
+  "LOGIN": "Đăng nhập",
+  "USERNAME": "Tên đăng nhập",
+  "PASSWORD": "Mật khẩu",
+  "USERNAME-PLACEHOLDER": "Nhập tên đăng nhập",
+  "PASSWORD-PLACEHOLDER": "Nhập mật khẩu",
+  "LOGGING-IN": "Đang xử lý...",
+  "BRANDS-SELECTED": "Thương hiệu đang đã chọn"
 }

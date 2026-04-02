@@ -22,8 +22,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   styleUrl: './header.css',
 })
 export class Header implements OnInit {
-  supportedLangs: string[] = ['en', 'vi'];
-  currentLang: string = 'en';
   @Input() title: string = '';
   @Input() tooltip: string = '';
   @Output() toggleSidebar = new EventEmitter<void>();
@@ -32,23 +30,5 @@ export class Header implements OnInit {
     private translate: TranslateService,
     private router: Router,
   ) {}
-  ngOnInit() {
-    const savedLang = localStorage.getItem('lang') || 'en';
-
-    this.currentLang = savedLang;
-
-    this.translate.setFallbackLang('en');
-    this.translate.use(savedLang);
-  }
-
-  changeLanguage(lang: string) {
-    this.currentLang = lang;
-    this.translate.use(lang).subscribe(() => {
-      localStorage.setItem('lang', lang);
-    });
-  }
-  logout() {
-    this.authService.logout();
-    this.router.navigate(['/login']);
-  }
+  ngOnInit() {}
 }

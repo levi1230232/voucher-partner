@@ -24,7 +24,6 @@
 
 .usage-card {
   width: 280px;
-  border-radius: 16px;
 }
 
 .usage-header {
@@ -36,6 +35,7 @@
 
 .usage-body {
   padding: 12px;
+  background-color: #fff;
 }
 
 .usage-row {

@@ -36,8 +36,7 @@ export class Receipts implements OnInit {
     'total_amount',
     'status',
   ];
-  currentLang: string = 'en';
-  supportedLang: string[] = ['en', 'vi'];
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   isLoading = signal<boolean>(false);
   dataSource = signal<[]>([]);
@@ -80,12 +79,7 @@ export class Receipts implements OnInit {
       this.fetchVoucher(params);
     });
   }
-  ngOnInit(): void {
-    const savedLang = localStorage.getItem('lang') || 'en';
-    this.currentLang = savedLang;
-    this.translate.setFallbackLang('en');
-    this.translate.use(savedLang);
-  }
+  ngOnInit(): void {}
   buildParams(filter: receiptFilter): receiptFilter {
     return {
       page: filter.page,
@@ -113,7 +107,7 @@ export class Receipts implements OnInit {
     this.receiptService.getReceipt(params).subscribe((res: any) => {
       this.isLoading.set(false);
       this.receiptsData.set(res.data);
-      console.log(params);
+      // console.log(params);
       this.dataSource.set(res.data.receipts);
     });
   }

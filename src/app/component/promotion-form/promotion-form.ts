@@ -45,8 +45,6 @@ import { MatTooltip } from '@angular/material/tooltip';
   styleUrl: './promotion-form.css',
 })
 export class PromotionForm implements OnInit, OnChanges {
-  supportedLangs: string[] = ['en', 'vi'];
-  currentLang: string = 'en';
   @Input() title: string = '';
   @Input() promotionData: any;
   @Output() submitForm = new EventEmitter<any>();
@@ -58,11 +56,6 @@ export class PromotionForm implements OnInit, OnChanges {
   ) {}
 
   ngOnInit(): void {
-    const savedLang = localStorage.getItem('lang') || 'en';
-    this.currentLang = savedLang;
-
-    this.translate.setFallbackLang('en');
-    this.translate.use(savedLang);
     this.initForm();
     if (this.promotionData) {
       this.patchData(this.promotionData);
@@ -207,5 +200,18 @@ export class PromotionForm implements OnInit, OnChanges {
     if (charCode < 48 || charCode > 57) {
       event.preventDefault();
     }
+  }
+  brands = [
+    { value: 'FOOKBOOK', label: 'Fookbook' },
+    { value: 'BRAND-11K4', label: 'Steak Restaurant' },
+    { value: 'BRAND-59T1', label: 'iPOS Uneti Coffee & Drink' },
+    { value: 'BRAND-OMY7', label: 'Laville' },
+    { value: 'BRAND-QUTK', label: 'Bánh Canh Ghẹ' },
+    { value: 'SPOLHCM4', label: 'SPOLHCM4' },
+  ];
+  getSelectedBrandNames(): string[] {
+    const selected = this.promotionForm.get('apply_brands')?.value || [];
+
+    return this.brands.filter((b) => selected.includes(b.value)).map((b) => b.label);
   }
 }

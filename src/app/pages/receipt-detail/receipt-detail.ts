@@ -15,8 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class ReceiptDetail implements OnInit {
   receiptCode: string = '';
-  currentLang: string = 'en';
-  supportedLang: string[] = ['en', 'vn'];
+
   invoice = signal<any>([]);
   constructor(
     private translate: TranslateService,
@@ -26,12 +25,7 @@ export class ReceiptDetail implements OnInit {
     this.receiptCode = this.route.snapshot.paramMap.get('receiptCode') || '';
     this.fetchReceiptDetail();
   }
-  ngOnInit(): void {
-    const savedLang = localStorage.getItem('lang') || 'en';
-    this.currentLang = savedLang;
-    this.translate.setFallbackLang('en');
-    this.translate.use(savedLang);
-  }
+  ngOnInit(): void {}
   fetchReceiptDetail() {
     this.receiptService.getReceiptByCode(Number(this.receiptCode)).subscribe((res: any) => {
       this.invoice.set(res.data.receipts[0]);

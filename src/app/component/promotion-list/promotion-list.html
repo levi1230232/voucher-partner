@@ -63,18 +63,20 @@
                   element.discount_value
                     ? (element.discount_type === 'PERCENTAGE'
                         ? element.discount_value * 100
-                        : element.discount_value) +
+                        : element.discount_value.toLocaleString()) +
                       (element.discount_type === 'PERCENTAGE' ? '%' : ' đ')
                     : '-'
                 }}
               </li>
               <li>
                 {{ 'MINI-ORDER-VALUE' | translate }}:
-                {{ element.min_order_value ? element.min_order_value + ' đ' : '-' }}
+                {{
+                  element.min_order_value ? element.min_order_value.toLocaleString() + ' đ' : '-'
+                }}
               </li>
               <li>
                 {{ 'MAX-DISCOUNT' | translate }}:
-                {{ element.discount_max ? element.discount_max + ' đ' : '-' }}
+                {{ element.discount_max ? element.discount_max.toLocaleString() + ' đ' : '-' }}
               </li>
               <li>{{ 'DISCOUNT-TYPE' | translate }}: {{ element.discount_type | translate }}</li>
             </ul>
@@ -85,9 +87,9 @@
           <td mat-cell *matCellDef="let element">
             <ul class="list-promotions">
               <li>
-                {{ 'FROM' | translate }}: {{ element.start_time | date: 'HH:mm dd/MM/yyyy ' }}
+                {{ 'FROM' | translate }}: {{ element.start_time | date: ' dd/MM/yyyy HH:mm:ss' }}
               </li>
-              <li>{{ 'TO' | translate }}: {{ element.end_time | date: 'HH:mm dd/MM/yyyy' }}</li>
+              <li>{{ 'TO' | translate }}: {{ element.end_time | date: 'dd/MM/yyyy HH:mm:ss' }}</li>
             </ul>
           </td>
         </ng-container>

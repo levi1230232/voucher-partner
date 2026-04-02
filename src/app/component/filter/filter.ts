@@ -34,8 +34,6 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
   styleUrl: './filter.css',
 })
 export class Filter implements OnInit, OnChanges {
-  supportedLanguage: string[] = ['en', 'vi'];
-  currentLang: string = 'en';
   fields: any[] = [];
   filter: any = {};
   @Input() isLoading: boolean = false;
@@ -44,11 +42,6 @@ export class Filter implements OnInit, OnChanges {
 
   constructor(private translate: TranslateService) {}
   ngOnInit(): void {
-    const savedLang = localStorage.getItem('lang') || 'en';
-    this.currentLang = savedLang;
-
-    this.translate.setFallbackLang('en');
-    this.translate.use(savedLang);
     this.setData();
   }
 

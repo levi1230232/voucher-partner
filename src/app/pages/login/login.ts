@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +21,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     CommonModule,
     MatIconModule,
     MatProgressSpinnerModule,
+    TranslateModule,
   ],
   templateUrl: './login.html',
   styleUrl: './login.css',
@@ -33,6 +35,7 @@ export class Login {
   constructor(
     private authService: AuthService,
     private router: Router,
+    private translate: TranslateService,
   ) {}
   toggleVisibility() {
     this.hide = !this.hide;

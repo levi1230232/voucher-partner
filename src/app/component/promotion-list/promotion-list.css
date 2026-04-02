@@ -4,7 +4,7 @@
   gap: 20px;
   position: relative;
   padding: 32px;
-  background-color: #00000012;
+  background-color: transparent;
 }
 mat-card {
   padding: 16px;
@@ -186,13 +186,15 @@ button[mat-button] {
   background-color: white;
 }
 .btn-add {
-  padding: 20px;
-
+  padding: 10.5px 24px !important;
   background: linear-gradient(135deg, #f89523 0%, #e6b175 100%) !important;
   color: rgb(255, 255, 255) !important;
   box-shadow:
     rgba(230, 177, 117, 0.2) 0px 4px 6px -1px,
     rgba(230, 177, 117, 0.1) 0px 2px 4px -1px !important;
+  font-weight: 600 !important;
+  border-radius: 0.75rem !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .btn-add:hover {
   transform: translateY(-3px);
@@ -209,7 +211,9 @@ button[mat-button] {
   z-index: 10;
 }
 .action-buttons {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  /* display: grid;
+  grid-template-columns: repeat(2, 1fr); */
   gap: 8px;
+  display: flex;
+  flex-direction: column;
 }

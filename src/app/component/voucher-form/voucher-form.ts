@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Inject, OnInit, signal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -18,6 +19,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
     MatInputModule,
     MatButtonModule,
     MtxDatetimepickerModule,
+    MatDatepickerModule,
     MatFormFieldModule,
     MtxNativeDatetimeModule,
     TranslateModule,
@@ -29,8 +31,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 export class VoucherForm implements OnInit {
   voucherForm: FormGroup;
   submitted: boolean = false;
-  supportedLanguage: string[] = ['en', 'vi'];
-  currentLang: string = 'en';
+
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<VoucherForm>,
@@ -45,13 +46,7 @@ export class VoucherForm implements OnInit {
       end_time: [null],
     });
   }
-  ngOnInit(): void {
-    const savedLang = localStorage.getItem('lang') || 'en';
-    this.currentLang = savedLang;
-
-    this.translate.setFallbackLang('en');
-    this.translate.use(savedLang);
-  }
+  ngOnInit(): void {}
   formatDate(date: Date | null) {
     if (!date) return null;
 

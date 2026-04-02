@@ -35,15 +35,24 @@
   <div class="menu-bottom">
     <button mat-list-item class="lang-item">
       <mat-icon matListItemIcon>translate</mat-icon>
-
-      <mat-button-toggle-group
-        class="lang-toggle"
-        [value]="currentLang()"
-        (change)="changeLanguage($event.value)"
-      >
-        <mat-button-toggle value="en">EN</mat-button-toggle>
-        <mat-button-toggle value="vi">VI</mat-button-toggle>
-      </mat-button-toggle-group>
+      <div class="lang-toggle">
+        <button
+          value="vi"
+          (click)="changeLanguage('vi')"
+          class="lang-item"
+          [class.active-lang]="currentLang() == 'vi'"
+        >
+          VI
+        </button>
+        <button
+          value="en"
+          (click)="changeLanguage('en')"
+          class="lang-item"
+          [class.active-lang]="currentLang() == 'en'"
+        >
+          EN
+        </button>
+      </div>
     </button>
 
     <button mat-list-item (click)="logout()">

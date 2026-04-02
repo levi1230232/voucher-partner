@@ -122,5 +122,16 @@
   "PRINT-OR-DOWNLOAD-BILL": " Print or download bill",
   "NO_DATA": "No matching data found",
   "INVOICE": "Invoice",
-  "QUANTITY": "Quantity"
+  "QUANTITY": "Quantity",
+  "SELECT-DATE": "Select Date",
+  "EMAIL": "Email",
+  "EMAIL-PLACEHOLDER": "Enter email address",
+  "NUMBER-VOUCHER": "Enter number of voucher",
+  "LOGIN": "Login",
+  "USERNAME": "Username",
+  "PASSWORD": "Password",
+  "USERNAME-PLACEHOLDER": "Enter your username",
+  "PASSWORD-PLACEHOLDER": "Enter your password",
+  "LOGGING-IN": "Logging in...",
+  "BRANDS-SELECTED": "brands selected"
 }

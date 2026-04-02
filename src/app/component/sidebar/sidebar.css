@@ -14,7 +14,7 @@ mat-nav-list a.mat-mdc-list-item {
   border-radius: 10px;
   height: 48px;
   margin-bottom: 4px;
-  padding: 0 8px;
+  padding: 0 4px;
   transition: 0.2s;
 }
 
@@ -52,39 +52,33 @@ button {
   outline: none;
   border: none;
 }
-.language-switch {
+
+.lang-toggle {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 8px;
+  justify-content: center;
+  background-color: #f1f5f9;
+  padding: 4px 0px;
+  margin: 0 30px;
+  border-radius: 8px;
+  gap: 4px;
+  transition: opacity 0.3s ease;
 }
 
-.language-switch button {
-  min-width: 40px;
-  font-size: 13px;
+.lang-item {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 0.75rem;
+  color: #0f172a;
+  transition: all 0.2s ease;
 }
 
 .active-lang {
-  font-weight: 600;
-  background: rgba(0, 0, 0, 0.08);
-  border-radius: 6px;
-}
-.lang-item {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  justify-content: space-between;
-}
-
-.lang-item mat-icon {
-  margin-right: 12px;
-}
-
-.lang-toggle {
-  margin-left: auto;
-}
-
-.lang-toggle .mat-button-toggle {
-  font-size: 12px;
-  padding: 0 8px;
+  font-weight: 700;
+  background-color: #fff;
+  color: #0f172a;
+  box-shadow: 0 2px 4px #0000000d;
 }

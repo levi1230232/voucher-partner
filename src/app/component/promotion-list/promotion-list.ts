@@ -36,8 +36,6 @@ import { Header } from '../header/header';
   styleUrl: './promotion-list.css',
 })
 export class PromotionList implements OnInit {
-  supportedLangs: string[] = ['en', 'vi'];
-  currentLang: string = 'en';
   displayedColumns = [
     'promotion_id',
     'name',
@@ -115,12 +113,6 @@ export class PromotionList implements OnInit {
     filter: { ...this.filter() },
   };
   ngOnInit() {
-    const savedLang = localStorage.getItem('lang') || 'en';
-    this.currentLang = savedLang;
-
-    this.translate.setFallbackLang('en');
-    this.translate.use(savedLang);
-
     const savedFilter = localStorage.getItem('promotionsFilter');
 
     if (savedFilter) {

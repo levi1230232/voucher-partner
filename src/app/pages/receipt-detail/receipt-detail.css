@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #00000012;
+  background-color: transparent;
   min-height: calc(100vh);
   position: relative;
 }
@@ -11,7 +11,7 @@
 mat-card {
   background-color: white;
   width: 800px;
-  padding: 30px 40px;
+  padding: 80px 40px;
   border-radius: 8px;
 }
 
@@ -83,7 +83,7 @@ mat-card {
   background: transparent;
   transform: translate(-50%, -50%);
   gap: 8px;
-  top: 85%;
+  top: 90%;
   left: 50%;
   border: none;
   display: flex;

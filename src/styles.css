@@ -9,7 +9,7 @@
   z-index: 999999;
 }
 body {
-  background: transparent;
+  background: #f8fafc;
 }
 hr {
   opacity: 0.4;
@@ -33,4 +33,56 @@ hr {
   button {
     display: none !important;
   }
+}
+mat-calendar {
+  background: #fff !important;
+  box-shadow:
+    0 10px 25px -5px #0000001a,
+    0 8px 10px -6px #0000001a;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+
+  /* width: 320px; */
+  /* padding: 20px; */
+}
+div[id^='mat-select'][id$='-panel'] {
+  background: #fff !important;
+  border-radius: 6px !important;
+  margin-top: 12px;
+}
+/* .mat-mdc-option:hover {
+  background: transparent !important;
+} */
+
+.mat-mdc-option.mat-mdc-option-active {
+  background: transparent !important;
+}
+.mat-mdc-option.mdc-list-item--selected {
+  background-color: #3f9debd1 !important;
+  margin: 0 4px;
+  border-radius: 5px;
+  width: auto;
+}
+
+.mat-mdc-option.mdc-list-item--selected span {
+  color: white !important;
+}
+.mat-pseudo-checkbox-minimal.mat-pseudo-checkbox-checked::after {
+  display: none !important;
+}
+.mat-mdc-select-panel {
+  scrollbar-width: none; /* Firefox */
+}
+
+.mat-mdc-select-panel::-webkit-scrollbar {
+  display: none; /* Chrome, Edge, Safari */
+}
+.mat-mdc-select-value-text span {
+  font-size: 15px !important;
+}
+.mat-datepicker-toggle-default-icon {
+  opacity: 0.5 !important;
+}
+.mat-mdc-menu-panel.usage-menu.mat-menu-before.mat-menu-above {
+  border-radius: 12px !important;
 }
