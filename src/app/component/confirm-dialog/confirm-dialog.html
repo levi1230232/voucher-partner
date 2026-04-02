@@ -2,10 +2,10 @@
 
 <mat-dialog-content>
   {{ data.title }}
-  <span style="font-weight: 600">{{ data.name }} ?</span>
+  <span style="font-weight: 600">"{{ data.name }}" ?</span>
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-  <button mat-raised-button color="warn" (click)="close()">No</button>
-  <button mat-raised-button color="primary" (click)="confirm()">Yes</button>
+  <button class="btn-outline" (click)="close()">{{ 'NO' | translate }}</button>
+  <button class="btn-premium" (click)="confirm()">{{ 'YES' | translate }}</button>
 </mat-dialog-actions>

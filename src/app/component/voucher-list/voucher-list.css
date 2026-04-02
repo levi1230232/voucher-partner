@@ -115,3 +115,6 @@ table {
   table-layout: fixed;
   width: 100%;
 }
+.mat-column-stt {
+  width: 8%;
+}

@@ -79,12 +79,12 @@ export class VoucherList implements OnInit {
       },
       {
         key: 'created_time',
-        label: 'CREATED-TIME',
+        label: 'CREATED-TIME-RANGE',
         type: 'date-range',
       },
       {
         key: 'use_time',
-        label: 'USE-TIME',
+        label: 'USE-TIME-RANGE',
         type: 'date-range',
       },
     ],

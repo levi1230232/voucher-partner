@@ -104,15 +104,21 @@ table {
   padding: 2px 10px !important  ;
 }
 .mat-column-promotion_id {
-  width: 12%;
+  width: 10%;
 }
 .mat-column-discount_details {
+  width: 15%;
+  font-size: 13.5px;
+}
+.mat-column-brand {
   width: 19%;
 }
-.mat-column-brand,
 .mat-column-name {
   font-weight: 500;
   width: 14%;
+}
+td {
+  padding: 16px;
 }
 
 .mat-mdc-header-cell {
@@ -163,12 +169,12 @@ button[mat-button] {
 }
 
 .btn-action.is-cancelled {
-  color: #ef4444;
+  color: #ef4444 !important;
   border-color: #fee2e2;
 }
 
 .btn-action.is-cancelled:hover {
-  background-color: rgba(211, 47, 47, 0.1);
+  background-color: #fee2e2 !important;
 }
 .btn-action {
   color: #92400e !important;

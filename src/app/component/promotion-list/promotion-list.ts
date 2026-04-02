@@ -106,9 +106,9 @@ export class PromotionList implements OnInit {
         type: 'select',
         options: this.discountTypeList,
       },
-      { key: 'created_time', label: 'CREATED-TIME', type: 'date-range' },
-      { key: 'start_time', label: 'START-TIME', type: 'date-range' },
-      { key: 'end_time', label: 'END-TIME', type: 'date-range' },
+      { key: 'created_time', label: 'CREATED-TIME-RANGE', type: 'date-range' },
+      { key: 'start_time', label: 'START-TIME-RANGE', type: 'date-range' },
+      { key: 'end_time', label: 'END-TIME-RANGE', type: 'date-range' },
     ],
     filter: { ...this.filter() },
   };
@@ -200,7 +200,7 @@ export class PromotionList implements OnInit {
       page: event.pageIndex + 1,
       size: event.pageSize,
     }));
-
+    // console.log(event);
     this.saveFilter();
   }
   openDialogConfirmActive(promotion: any) {
@@ -209,8 +209,8 @@ export class PromotionList implements OnInit {
       data: {
         title:
           promotion.status === 'CANCELLED'
-            ? `Are you sure you want to active the promotion`
-            : `Are you sure you want to cancel the promotion`,
+            ? this.translate.instant('CONFIRM-ACTIVE-PROMOTION')
+            : this.translate.instant('CONFIRM-CANCEL-PROMOTION'),
         name: promotion.name,
       },
     });

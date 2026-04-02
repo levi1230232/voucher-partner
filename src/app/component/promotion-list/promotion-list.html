@@ -30,7 +30,7 @@
       </div>
       <table *ngIf="!isLoading()" mat-table [dataSource]="dataSource()" class="mat-elevation-z8">
         <ng-container matColumnDef="promotion_id">
-          <th mat-header-cell *matHeaderCellDef>{{ 'PROMOTION-ID' | translate }}</th>
+          <th mat-header-cell *matHeaderCellDef>{{ 'PROMOTION-ID' | translate | uppercase }}</th>
           <td mat-cell *matCellDef="let element">
             <div class="promotion-id-container">
               {{ element.promotion_id }}
@@ -40,7 +40,20 @@
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef>{{ 'NAME' | translate }}</th>
           <td mat-cell *matCellDef="let element">
-            {{ element.name }}
+            <p style="font-weight: 600; color: #363636; font-size: 16px">{{ element.name }}</p>
+            <br />
+            <span
+              style="
+                font-weight: 400;
+                display: -webkit-box;
+                text-overflow: ellipsis;
+                -webkit-line-clamp: 2;
+                overflow: hidden;
+                margin-top: -15px;
+                -webkit-box-orient: vertical;
+              "
+              >{{ element.description }}</span
+            >
           </td>
         </ng-container>
         <ng-container matColumnDef="brand">
@@ -57,28 +70,38 @@
           <th mat-header-cell *matHeaderCellDef>{{ 'DISCOUNT-DETAILS' | translate }}</th>
           <td mat-cell *matCellDef="let element">
             <ul class="list-promotions">
-              <li>
-                {{ 'DISCOUNT' | translate }}:
-                {{
-                  element.discount_value
-                    ? (element.discount_type === 'PERCENTAGE'
-                        ? element.discount_value * 100
-                        : element.discount_value.toLocaleString()) +
-                      (element.discount_type === 'PERCENTAGE' ? '%' : ' đ')
-                    : '-'
-                }}
+              <li style="margin-top: 4px">
+                <h3 style="font-weight: 400">
+                  {{ 'DISCOUNT' | translate }}
+                  {{
+                    element.discount_value
+                      ? (element.discount_type === 'PERCENTAGE'
+                          ? element.discount_value * 100
+                          : element.discount_value.toLocaleString()) +
+                        (element.discount_type === 'PERCENTAGE' ? '%' : ' đ')
+                      : '-'
+                  }}
+                </h3>
               </li>
-              <li>
+              <li style="margin-top: 4px">
+                {{ 'MAX-DISCOUNT' | translate }}:
+                {{ element.discount_max ? element.discount_max.toLocaleString() + ' đ' : '-' }}
+              </li>
+
+              <li style="margin-top: 4px">
                 {{ 'MINI-ORDER-VALUE' | translate }}:
                 {{
                   element.min_order_value ? element.min_order_value.toLocaleString() + ' đ' : '-'
                 }}
               </li>
-              <li>
-                {{ 'MAX-DISCOUNT' | translate }}:
-                {{ element.discount_max ? element.discount_max.toLocaleString() + ' đ' : '-' }}
+              <li style="margin-top: 4px">
+                {{ 'ACCOUNTING-TYPE' | translate }}:
+                {{
+                  element.is_coupon
+                    ? ('COUPON' | translate)
+                    : ('DISCOUNT-ON-TOTAL-BILL' | translate)
+                }}
               </li>
-              <li>{{ 'DISCOUNT-TYPE' | translate }}: {{ element.discount_type | translate }}</li>
             </ul>
           </td>
         </ng-container>
@@ -161,6 +184,7 @@
       [pageIndex]="filter().page - 1"
       [pageSizeOptions]="[10, 20, 50]"
       (page)="pageChange($event)"
+      showFirstLastButtons
     >
     </mat-paginator>
   </mat-card>

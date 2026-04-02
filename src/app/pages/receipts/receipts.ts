@@ -58,7 +58,7 @@ export class Receipts implements OnInit {
       },
       {
         key: 'created_time',
-        label: 'CREATED-TIME',
+        label: 'CREATED-TIME-RANGE',
         type: 'date-range',
       },
       {

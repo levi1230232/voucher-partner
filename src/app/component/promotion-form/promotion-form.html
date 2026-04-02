@@ -196,7 +196,9 @@
               style="flex: 1; cursor: pointer"
               (click)="datetimePicker.open()"
             >
-              <label class="form-label">{{ 'START-TIME' | translate }}</label>
+              <label class="form-label"
+                >{{ 'START-TIME' | translate }} <span style="color: red">*</span></label
+              >
               <div class="custom-input">
                 <input
                   matInput
@@ -222,7 +224,9 @@
               style="flex: 1; cursor: pointer"
               (click)="datetimePicker.open()"
             >
-              <label class="form-label">{{ 'END-TIME' | translate }}</label>
+              <label class="form-label"
+                >{{ 'END-TIME' | translate }} <span style="color: red">*</span></label
+              >
               <div class="custom-input">
                 <input
                   matInput
